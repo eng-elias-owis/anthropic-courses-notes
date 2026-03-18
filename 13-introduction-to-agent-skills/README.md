@@ -1,0 +1,1 @@
+# \n\n**Status:** Not Started\n**Priority:** \n\n## Course Overview\n\n**URL:** \n\n**Description:** \n\n## Progress\n\n- [ ] Module 1\n- [ ] Module 2\n- [ ] Module 3\n\n## Key Takeaways\n\n*To be filled after completing course*\n\n## Integration with Projects\n\n### CIA Project\n- \n\n### Scratchers App\n- \n\n## Resources\n\n- 
