@@ -376,3 +376,29 @@ Claude 101 is Anthropic's foundational course covering what Claude is, how to in
 18. **In the desktop app, use Quick Entry** (double-tap Option on Mac) to ask questions without leaving your current app
 19. **Run lightweight evals before relying on Claude for recurring tasks** — compare Claude's output to 5–10 of your own examples
 20. **Start simple and expand** — pick one recurring task this week, try it, iterate, then build from there
+
+---
+
+### Lesson 13: Other Ways to Work with Claude
+
+**Key Concepts:**
+- Claude is an intelligence — Claude.ai is just one interface; it's available across specialized tools
+- **Claude Code** — agentic coding tool in your terminal/IDE; understands full codebase, runs tests, makes commits
+- **Claude in Slack** — drafts responses, summarizes threads, preps for meetings, can spin up Claude Code sessions from bug reports
+- **Claude for Excel** — sidebar in Microsoft Excel for analysis, formula help, pattern recognition, workbook editing
+- **Claude for Chrome** — browser extension to summarize pages, draft emails in Gmail, assist in any web app
+
+**When to use each:**
+
+| Tool | Best For |
+|------|----------|
+| Claude Code | Building features, debugging, navigating unfamiliar codebases |
+| Claude in Slack | Team collaboration, thread summaries, meeting prep |
+| Claude for Excel | Data analysis, formula help, pattern recognition |
+| Claude for Chrome | Web research, Gmail drafting, any browser-based work |
+
+**Practical Tips:**
+- Use Claude Code when you want to describe what you need in plain English and have it write + test the code
+- Tag @Claude in Slack to hand off coding tasks directly from a bug report or feature discussion
+- Claude for Excel can analyze patterns, model scenarios, and generate visualizations from your spreadsheet data
+- Claude for Chrome works as an overlay — no need to switch tabs for quick summaries or drafts
