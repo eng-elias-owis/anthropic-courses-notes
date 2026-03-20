@@ -1,49 +1,85 @@
-# Claude 101
+# Claude 101 - Course Extraction
 
-**Status:** ⏸️ Not Started  
-**Priority:** 🔥 High  
-**URL:** https://anthropic.skilljar.com/claude-101
+**Source:** https://anthropic.skilljar.com/claude-101
+**Extracted:** 2026-03-20T16:46:07.344Z
+**Status:** Enrolled and accessed
 
----
+## Curriculum Detected
 
-## Course Overview
+1. What is Claude?
+2. Your first conversation with Claude
+3. Getting better results
+4. Claude desktop app: Chat, Cowork, Code
+5. Introduction to projects
+6. Creating with artifacts
+7. Working with skills
+8. Connecting your tools
+9. Enterprise search
+10. Research mode for deep dives
+11. Putting it all together
+12. Claude in action: use-cases by role
+13. Other ways to work with Claude
+14. What's next?
+15. Conclusion & certificate
 
-**Description:** Learn how to use Claude for everyday work tasks, understand core features, and explore resources for more advanced learning on other topics  
-**Duration:** ~1-2 hours  
-**Level:** Beginner
+## Page Content Preview
 
----
+```
+Anthropic Academy Courses		
+My Profile
+Sign Out
+Claude 101
+0 of 14 lessons completed (0%)
+Start
 
-## Progress
+Curriculum
 
-- [ ] Module 1: Getting Started with Claude
-- [ ] Module 2: Core Features
-- [ ] Module 3: Everyday Use Cases
-- [ ] Module 4: Advanced Resources
+Course Overview
+ Meet Claude
+What is Claude?
+Your first conversation with Claude
+Getting better results
+Claude desktop app: Chat, Cowork, Code
+ Organizing your work and knowledge
+Introduction to projects
+Creating with artifacts
+Working with skills
+ Expanding Claude's reach
+Connecting your tools
+Enterprise search
+Research mode for deep dives
+ Putting it all together
+Claude in action: use-cases by role
+Other ways to work with Claude
+ Conclusion & certificate
+What's next?
+Certificate of completion
+Data and Privacy
+What is Skilljar and why am I logging into it?
 
----
+Skilljar is a learning management system that hosts our educational content. You're logging into it to access the Anthropic course materials. This separate platform allows us to provide interactive learning experiences, track your progress, and ensure you have access to all course resources in an organized way.
 
-## Key Takeaways
+What information does Skilljar collect about my learning activity?
 
-*To be filled after completing course*
+Skilljar collects basic learning analytics such as course progress, lesson completion status, quiz scores, and time spent on materials. This data helps us understand how you're progressing through the course and allows us to provide you with completion certificates. All data collection is focused on improving your learning experience, and is subject to Skilljar's Privacy Policy.
 
----
+How is my Skilljar data different from my Anthropic account data?
 
-## Integration with Projects
+Skilljar only tracks your learning progress within this course platform, while your Anthropic account manages your access to the Anthropic Console and/or Claude AI services.
 
-### CIA Project
-- 
+Is Skilljar secure? Where is my data stored?
 
-### Scratchers App
-- 
+Yes, Skilljar employs industry-standard security measures including data encryption, secure hosting, and regular security audits. Your learning data is stored on secure servers with appropriate access controls. Skilljar is SOC 2 compliant and follows best practices for data protection to ensure your information remains safe and private.
 
----
+How do I delete my learning activity or account?
 
-## Resources
+To request deletion of your learning data or account, email academy-support@anthropic.com. Your request will be processed in accordance with applicable privacy laws and our data retention policies. Note that some data may need to be retained for legitimate business purposes, such as compliance or security, but we'll delete all personal information where legally permissible.
 
-- **Official Course:** https://anthropic.skilljar.com/claude-101
-- **Claude.ai:** https://claude.ai
+Do I need an Anthropic account to access the learning content?
 
----
+No, you don't need an Anthropic account to access this learning content. The course is hosted on Skilljar and only requires a Skilljar account for access. However, if you want to use Claude AI services after completing the course, you would need to create a separate Anthropic account at claude.ai.
 
-**Last Updated:** March 18, 2026
+© 2025 Anthropic PBC
+© 2026
+powered by 
+```
