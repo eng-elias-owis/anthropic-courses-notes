@@ -6,128 +6,153 @@
 
 ## 📋 Course at a Glance
 
-Anthropic Academy course on the Claude Developer Platform — APIs, models, agent loops, tool use, thinking, built-in tools, Skills, MCP, context management, and managed agents.
+A developer-focused course covering the full Claude Platform: the Messages API, model selection, agent loops, tool use, extended thinking, built-in server tools, Skills, MCP, context management, and managed agents.
 
 **Lessons:** 13 instructional + quiz
 
 ---
 
-## 🔑 Key Takeaways by Lesson
+## 📌 Lesson-by-Lesson Insights
 
 ### 1. What is the Claude Developer Platform?
 
-- The Claude Developer Platform is Anthropic's infrastructure for building with Claude programmatically. Instead of chatting with Claude in a browser, you send structured requests from your code and get structured responses back — with control over every detail: which model to use, how many tokens to spend, what tools Claude can use, and what system instructions it follows.
-- **Command line interfaces** — A console where you manage API keys, monitor usage, deploy managed agents, and test prompts
-- **The three layers of the platform** — A useful way to picture the platform is as three layers stacked on top of each other. Primitives — the API building blocks tuned to Claude.
-- **A real example: drafting help desk replies** — Say you manage a basic help desk app, and you've been asked to add a feature: draft a reply based on the contents of a ticket, following your team's tone and guidelines. You want to wire this up to a button in the UI.
-- **Return the response to the button to render** — client = anthropic.Anthropic() response = client.messages.create( model="claude-haiku-4-5",   # Haiku: a good fit for a simple drafting task max_tokens=1024, system=TONE_AND_GUIDELINES, messages=[ {"role": "user", "content": ticket_content} ], ) draft = response.content Each parameter does a specific job: model — which model handles the request. Here that's Haiku, since drafting a reply is a simple task.
+The platform is three stacked layers: **Primitives** (Messages API, tools, files, web search, MCP), **Infrastructure** (managed agents, retries, queues, observability), and **Controls** (dashboards, evals, analytics). The shorthand: *build with primitives, scale on infrastructure, run with controls.*
 
-### 2. Your first API call
-
-- Take the API key and store it in a .env.local file so it stays out of your version control. Hardcoding keys in source files is how they end up leaked on GitHub — keep them in environment files instead.
-- **The anatomy of a request** — Every API call goes through the messages.
-- **A max tokens limit — a cap on how long the response can be** — A list of messages — objects with either user or assistant roles, structured similarly to how you'd have a conversation with Claude elsewhere Here's what that looks like in its most basic form: import Anthropic from "@anthropic-ai/sdk"; const client = new Anthropic(); const msg = await client.
-- **A real example: reviewing buggy code** — Let's give Claude something a little more interesting than "hello." We'll point it at some buggy code and ask for a review. Here's the whole thing — one file, about 20 lines of code: import Anthropic from "@anthropic-ai/sdk"; const client = new Anthropic(); const buggyCode = ` function add(a, b) { return a - b; } `; const response = await client.
-- **From script to product** — In a real product, this same messages.create shape is the engine behind something like a summarize endpoint. Pull a meeting transcript out of the database, hand it to Claude with a system prompt that says "extract insights and risks," save the result back on the row, and return it to the UI.
-
-### 3. Choosing the right model
-
-- You're shipping an app with Claude. Which model do you pick?
-- **The model tiers** — Anthropic currently offers four model tiers, and you choose between them with the model parameter in your API call. Note that at the time of this course, Claude Fable was not generally available, and are not reflected in the video above.
-- **Start with a simple evaluation** — Before you write production code, set up a simple evaluation: a set of example inputs that you run through each model and score against what good output means for your use case. You don't need anything fancy — 20 or 30 representative examples from your actual workload is enough to start.
-- **Comparing the tiers side by side** — Let's see the difference between the tiers, not just talk about it. We'll send the same prompt through all three models and watch the latency and token counts: models = ["claude-haiku-4-5", "claude-sonnet-4-6", "claude-opus-4-7"] for model in models: response = client.
-- **Routing different work to different models** — In a real app, you'd route different kinds of work to different models inside the same endpoint. Take an operations dashboard with a document processing route: Every incoming file gets classified with Haiku.
-
-### 4. The agent loop explained
-
-- You've made API calls, but a single call only returns one response. If you want to automate a workflow, Claude needs to act, look at the result, decide what's next, and keep going.
-- **What an agent actually is** — An agent is an autonomous version of Claude, running both sides of the messaging loop without a human in the middle. An agent receives a task, picks a tool, and executes code in a loop until Claude decides the task is done.
-- **A minimal working example** — To see this loop run end to end without dragging in a database or a UI, we'll wire up a fake tool called get_weather and ask Claude what to wear in Austin today. Claude has no way to know the weather on its own, so it has to call the tool, read the result, and then give you an answer.
-- **Running it** — When you run the script, you'll see two turns: Turn one: the stop reason is tool_use. Claude requests get_weather for Austin, and your code returns the temperature and conditions.
-- **The same loop in production** — In a real environment, this same loop powers something like an auto-review endpoint: a compliance agent that reads a structural report, looks up the relevant building codes via a tool, and writes risk findings back to the database one by one as it works. The shape of the loop is identical to what you just ran.
-
-### 5. What is tool use?
-
-- Your existing workflows rely on a lot of different technologies — project management software, databases, files. Claude can't just check these things itself.
-- **What a tool is** — Simply put, a tool is a function you define and expose to Claude. You describe what it does and what inputs it takes, and Claude decides when to call it.
-- **How tools are defined** — Tools are JSON schemas with three parts: a name, a description, and an input schema. You pass them to Claude in the request body as a tools array.
-- **Multiple tools: letting Claude pick** — One tool is useful, but the interesting part is giving Claude multiple tools and watching it pick which one to use, in what order. Picture this scenario: you're packing for a three-day trip to Denver, and you want both today's weather and the forecast for the next few days.
-- **The tool runner: skip the boilerplate** — You've probably already spotted two red flags with what we just wrote: That's a lot of code for two simple lookups. In a real codebase, you don't want to handwrite JSON schemas for every function you have.
-
-### 6. What is thinking?
-
-- Some tasks need more than a quick answer. Claude can work through a problem before responding — a feature called extended thinking.
-- **Adaptive thinking on Opus 4.7** — With Opus 4.7, thinking is adaptive. You don't pick a token budget.
-- **Anything that involves trade-offs or comparing options** — Skip it for simple classification, extraction, or boilerplate. For those tasks it just adds latency and cost without actually improving the results.
-- **Thinking in action** — Let's see it work. Here's an agent loop with one weather tool, and we'll ask Claude to plan a road trip out of San Francisco — two stops, weighing weather and drive time.
-- **Why this matters in production** — In a production app, this is the difference between an agent that finds problems one at a time and an agent that connects them. Take a compliance review app: toggling adaptive thinking on the auto-review call lets the agent reason across report sections — catching things like a wind load spec in section three that conflicts with the material spec elsewhere in the document.
-
-### 7. Built-in tools
-
-- You can build your own custom tools, but some capabilities are common enough that Anthropic ships them pre-built. You don't write the code.
-- **Server tools: declared by you, run by Anthropic** — Anthropic provides server tools that run on their infrastructure. You don't execute these — Anthropic does.
-- **Two server tools in one file** — Let's check out some of the big ones in one file: two messages.create calls, one with web search and one with code execution. import anthropic client = anthropic.Anthropic() # Call 1: web search — Anthropic runs the search server-side search_response = client.messages.create( model="claude-opus-4-8", max_tokens=1024, tools=[{"type": "web_search_20260209", "name": "web_search"}], messages=[ {"role": "user", "content": "What is Anthropic's latest model release? Answer in one sentence.
-- **Running it** — For web search, you'll see Claude's tool call printed, then a one-sentence answer about the latest model release with the search citations folded in. For code execution, you'll see the actual Python Claude wrote, the stdout from the sandbox running it, and a final text answer.
-- **The other category: client tools** — Worth knowing the other category exists. Client tools run where your code runs.
-
-### 8. Skills
-
-- Skills are folders of instructions, scripts, and resources that Claude loads dynamically to improve performance on specialized tasks. At the core of every Skill is a SKILL.
-- **Skills vs. tools** — It's worth being clear on the difference, because the two solve different problems: Tools connect Claude to data and actions. "Look up this code section," "send this email" — Claude calls the tool, and something else runs. Skills teach Claude a procedure.
-- **Uploading a Skill** — Skills are uploaded once to your workspace, then referenced by ID. You can upload directly on the Claude Platform, or do it programmatically: skill = client.
-- **Attaching a Skill to a request** — Skills attach to a request through the container configuration — a skills array inside the container, where each entry names a skill_id and version. Here's the full call for the status report generator: response = client.
-- **Running it** — The output is a status report formatted exactly the way the Skill says to format it. Sections, tone, blocker handling — all of it comes from the SKILL.
-
-### 9. MCP
-
-- We have tools, skills, and connectors. So why does MCP exist?
-- **The maintenance problem** — Say your agent needs to pull tasks from Asana, check a Google Calendar, and search Slack — all in one go. With custom tools, you have to write three integrations.
-- **Tools vs. skills vs. MCP** — These three features do different jobs: Tools connect Claude to your internal systems — your database, your project tracker, your proprietary APIs. You own the code, so you also own the maintenance.
-- **Connecting to an MCP server** — The cleanest way to get a feel for MCP is to point Claude at any MCP server and let it discover what's there. For this example, we'll use the Linear MCP server, with the connection details and auth token stored in a .
-- **Filtering which tools Claude can use** — MCP servers often expose many, many tools — and you don't always want Claude using all of them. Maybe you don't want it to have write permissions, or you just don't want all those tool definitions taking up context.
-
-### 10. Context management
-
-- Every request you send Claude has a context window. A million tokens sounds like a lot, but it runs out faster than you think once you're shipping a real agent.
-- **Thinking blocks** — It's the input to every single API call. You pay for it on the way in, and you pay for it on the way out.
-- **Pattern 1: Just-in-time context** — Don't load everything upfront. Load what the agent needs now, and let it pull more in via tools when it asks.
-- **Pattern 2: Server-side compaction** — When a conversation runs long, Anthropic's server-side compaction summarizes old turns into a single block. You opt in by adding a context_management key to your request, holding an edit with a type: response = client.
-- **Pattern 3: Prompt caching** — Prompt caching lets you mark the stable parts of a request — the system prompt, the tool definitions, a long document — and reuse them across calls at a fraction of the cost. The math matters more than it looks.
-
-### 11. What are managed agents?
-
-- Under the hood, this is an agent loop: Claude reasons, calls a tool, reads the result, and repeats until the job is done. If you've built agents before, you've probably written this kind of loop yourself.
-- **Example 1: A Kanban board that does the work** — Picture a Kanban board sitting on top of managed agents. You drag a ticket into the "in progress" column, and that fires off a session automatically.
-- **All images lazy loaded** — Claude runs the audit, then starts compressing images, inlining CSS, and deferring scripts. Every tool call streams back to the board in real time through the event stream, so you can watch the work as it happens.
-- **Example 2: A recurring research agent with memory** — Here's a different shape of agent: one whose job is to track prices and plan changes across every SaaS tool your company pays for, with a report ready before stand-up.
-- **Uses an Excel spreadsheet skill and writes an executive summary** — Posts a link to Slack and creates a review task in Asana, both through MCP servers The agent also reads from and writes to a memory store. Before it starts, it checks what it found last week.
-
-### 12. Building your first managed agent
-
-- If you've built an agent loop by hand, you know the drill: while loops, stop reason switches, tool executions. That works, and for a lot of features it's actually the right shape.
-- **The four primitives** — There are four primitives, and they come in order: Agent — the persona: model, system prompt, and toolset. This is reusable across many runs.
-- **The smallest possible managed agent** — Let's build the smallest managed agent that does something useful: create a file in the temp drive, count its lines, and report back. For tools, we'll use the agent toolset — Anthropic's bundled file, bash, and web tools.
-- **Step 1: Create the agent** — First, we create the agent. Note the agent toolset defined right in the tools array — that's the bundled toolset: import anthropic client = anthropic.
-- **Step 2: Create the environment** — Next, the environment. This spins up the container template — cloud, with unrestricted networking.
-
-### 13. Building with Claude Code
-
-- Writing code that calls the Claude API by hand works fine, but there's an even faster path: have Claude write it for you. In this lesson, we'll use Claude Code to fill in an API integration from a stubbed-out file — using the same primitives you've learned throughout this course.
-- **Starting from a stub** — The project is simple: a TypeScript file that gets weather. It contains two stubs: getWeather — accepts a city and returns the temperature and conditions.
-- **The Claude API skill** — Claude Code comes with a built-in skill called Claude API. You can invoke it directly with /claude-api, or Claude Code will invoke it automatically when it detects that you're using the TypeScript SDK.
-- **One prompt, working code** — Open the project folder in your terminal and launch Claude Code. From there, it takes a single prompt.
-- **What Claude Code produced** — In this run, Claude Code created a Zod tool that parsed the input and returned the output based on the city type. It also created the tool runner and the run function we asked for, and printed the final results of the agent loop.
+💡 Even a simple feature like "draft a help-desk reply from a ticket" is a perfect Messages API use case — you don't need the full agent stack until your scale demands it.
 
 ---
 
-## 💡 Universal Tips for Working with AI
+### 2. Your first API call
 
-- **Start with the goal, not the prompt** — be clear about what outcome you want
-- **Iterate** — first outputs are drafts, not final answers
-- **Verify facts independently** — AI is confident but not always correct
-- **Stay in the loop** — always review AI output before acting on it
-- **Be transparent** — disclose AI use to collaborators and stakeholders
-- **Match AI use to value** — delegate tasks where AI genuinely helps, not for its own sake
+Every call goes through `messages.create` with three things: a model name, a `max_tokens` cap, and a messages list. The response `content` is an array of typed blocks — never a plain string. Always loop through and check the block type before reading text.
+
+💡 Never hardcode your API key. Store it in `.env` / `.env.local` and keep it out of version control. A leaked key on GitHub is a real, common incident.
+
+💡 The system prompt is where you define the persona. "You are a terse senior code reviewer" beats "help me review code" every time.
+
+---
+
+### 3. Choosing the right model
+
+| Tier | Best for | Trade-off |
+|---|---|---|
+| **Haiku** | Classification, extraction, routing | Fastest, cheapest, lower quality |
+| **Sonnet** | Most production work | Balanced |
+| **Opus** | Deep reasoning, complex coding, nuance | Slowest, most expensive |
+| **Fable** | Toughest challenges | Above Opus cost |
+
+💡 **Evaluation-first workflow:** before writing production code, run 20–30 representative examples through each tier starting from Haiku. Stop at the first tier where quality holds. This saves significant money.
+
+💡 In a real app, route *different work* to different models in the same endpoint — e.g., classify with Haiku, then analyze with Sonnet only if the classifier flags it.
+
+---
+
+### 4. The agent loop explained
+
+An agent loop is just a `while` loop: send message → check `stop_reason` → if `tool_use`, execute tool and append result → repeat until `end_turn`. Claude never runs tools itself — your code does.
+
+💡 The shape is always the same: user kicks off → Claude responds or calls a tool → tool returns → Claude continues. Keep this mental model and you can debug any agentic failure.
+
+---
+
+### 5. What is tool use?
+
+Tools are JSON schemas with three parts: `name`, `description`, and `input_schema`. The **description** is what Claude reads to decide whether to call the tool. Vague descriptions = wrong tool calls. Be specific.
+
+💡 Use a **tool runner** to skip hand-writing JSON schemas for every function. The tool runner handles the agent loop boilerplate automatically.
+
+💡 When Claude returns `stop_reason: "tool_use"`, grab `tool_use` blocks from `content`, run each, then post back a `user` message containing `tool_result` blocks tied to each tool call's `id`.
+
+---
+
+### 6. What is thinking?
+
+Extended thinking lets Claude reason step-by-step before responding. With Opus 4.x, thinking is **adaptive** — you don't set a token budget; you set an `effort` level: `low`, `medium`, `high`, `xhigh`, or `max`. The `effort` param goes inside `output_config`, not next to `thinking`.
+
+💡 **Use thinking when:** the task involves trade-offs, options comparison, or multi-step reasoning. **Skip thinking for:** classification, extraction, boilerplate — it just adds latency and cost.
+
+💡 In a compliance app, adaptive thinking lets Claude cross-reference specs across sections — catching conflicts a single-pass response would miss.
+
+---
+
+### 7. Built-in tools
+
+Server tools (web search, code execution) run on Anthropic's infrastructure — you don't need an agent loop for them. Claude calls them server-side and the result comes back inside the same response. Client tools run where your code runs and require an agent loop.
+
+💡 For web search, declare `{"type": "web_search_20260209", "name": "web_search"}` in your `tools` array — no loop needed. The response already contains the search result and citations.
+
+💡 For code execution, Claude writes and runs Python in a sandboxed environment. Useful for math, data processing, or anything requiring reliable computation.
+
+---
+
+### 8. Skills
+
+A Skill is a folder of instructions, scripts, and resources with a `SKILL.md` at its core. Upload once with `client.beta.skills.create()`, then reference the returned `skill.id` in your requests. Skills attach inside the `container` config as a `skills` array.
+
+💡 Skills ≠ Tools: Tools are *what Claude can do* (run code, query a DB). Skills are *how you want it done* (your report format, your review checklist, your release notes template).
+
+💡 Skills load lazily — only name + description appear at first; the full skill content loads only when Claude decides it's relevant. This keeps context lean even with many skills registered.
+
+---
+
+### 9. MCP
+
+MCP (Model Context Protocol) shifts integration maintenance to the service provider. Instead of writing and maintaining wrappers for Asana, Slack, and Google Calendar yourself, each service publishes its own MCP server. When their API changes, they update the server — you change nothing.
+
+💡 Tools = your internal stuff. Skills = your processes. MCP = everyone else's stuff.
+
+💡 Filter which tools Claude can access from an MCP server using the `allowed_tools` list inside the `mcp_toolset` config — critical for scoping permissions and keeping context lean.
+
+---
+
+### 10. Context management
+
+Four patterns for staying inside the context window:
+
+1. **Just-in-time context** — Don't front-load everything. Let Claude pull specifics via tools when needed.
+2. **Server-side compaction** — Add `context_management: {edits: [{type: "compact"}]}` to auto-summarize long conversations on the server side.
+3. **Prompt caching** — Mark stable parts of a request (system prompt, tool defs, large docs) as cacheable. At 100 calls/hour on a 4,000-token system prompt, caching is the difference between a manageable bill and a call from finance.
+4. **Explicit summarization** — Manually summarize and inject a condensed history at session checkpoints.
+
+💡 You pay for tokens both in and out. Design your context deliberately — fit the *right* things in, not everything.
+
+---
+
+### 11. What are managed agents?
+
+Managed agents are agent loops that run on Anthropic's infrastructure instead of your server. You define the agent, create a session, and stream events back. Sessions run in isolated containers with file systems, tools, and mounts — two sessions run in parallel without affecting each other.
+
+💡 Key shift: you're not running a `while` loop. You're sending events and reading events.
+
+💡 Managed agents support memory stores — agents can read what they found last week and build on it, enabling recurring research and tracking workflows.
+
+---
+
+### 12. Building your first managed agent
+
+Four primitives in order: **Agent** (model + system prompt + toolset, reusable across runs) → **Environment** (container, networking) → **Session** (one unit of work) → **Events** (stream of actions and results).
+
+💡 Use the agent toolset (`type: "agent_toolset"`) for bundled file, bash, and web tools — no custom definitions needed for basic tasks.
+
+💡 Events stream back in real time — you can pipe them to a UI (Kanban board, dashboard, chat) while the agent is still working.
+
+---
+
+### 13. Building with Claude Code
+
+Claude Code can write API integrations from a stub file with a single, well-structured prompt. A good prompt: names the file, names the pattern (tool runner + SDK), and names the expected end state. Claude Code reads errors and patches code in place.
+
+💡 Use the built-in **Claude API skill** (`/claude-api`) to get Claude Code to follow the right SDK patterns automatically. Add it from the marketplace if missing: `/plugin marketplace add AnthropicsSkills` (note the trailing *s*).
+
+---
+
+## 💡 Key Principles Across the Course
+
+- **Start simple, scale up** — Haiku → Sonnet → Opus. Only reach for the bigger model when the smaller one fails your evaluation.
+- **Your code runs tools, not Claude** — Claude requests; you execute. This is the mental model for all agentic work.
+- **The description is the interface** — For tools, MCP, and Skills alike, what Claude reads to decide what to do is always a description you wrote. Write it precisely.
+- **Context is money** — Every token you send costs. Cache stable content, compact long conversations, and load context just-in-time.
+- **Managed agents ≠ writing a loop** — They're an event-driven API. Learn to think in events and sessions, not while loops.
 
 ---
 

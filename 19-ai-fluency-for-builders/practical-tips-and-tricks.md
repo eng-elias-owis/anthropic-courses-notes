@@ -6,96 +6,151 @@
 
 ## 📋 Course at a Glance
 
-Applied AI Fluency course for developers and builders: 4D framework, delegation with the builder's toolkit, description for building, and discernment for code and user experience.
+Applied AI Fluency course for developers, product people, and makers. Covers the 4D Framework through a builder's lens: decomposing problems before coding, the Description Chain from user need to AI instruction, five lenses of code discernment, UX principles for AI-generated interfaces, and full ownership of what you ship.
 
 **Lessons:** 9 instructional + quiz
 
 ---
 
-## 🔑 Key Takeaways by Lesson
+## 📌 Lesson-by-Lesson Insights
 
-### 1. Welcome to AI Fluency for builders
+### 1. Welcome to AI Fluency for Builders
 
-- **Introduction to AI Fluency for builders** — (4 minutes) This video introduces builders — product people, designers, and makers — to the course, explains what AI Fluency actually means in practice, and previews the 4D Framework that will anchor every lesson that follows.
-- **Course roadmap** — 4D Framework for AI Fluency Delegation, description, discernment, and diligence—the four competencies behind every productive AI collaboration.
-- **AI capabilities and limitations** — What today’s AI can and can’t do reliably, and why that shapes how you put it to work as a builder.
-- **Delegation & the Builder’s Toolkit** — How to decompose a problem, decide what AI handles at each stage, and define done before you write a line of code.
-- **Discernment for code and UX** — Evaluating AI output against what actually matters: correctness, quality, fit, experience, and responsibility.
+AI Fluency for builders isn't just about prompting — it's about knowing which decisions AI can accelerate and which require your judgment, taste, and empathy. The 4D Framework applies at every stage of building: deciding what to delegate, describing what you need precisely, discerning whether the output is actually good, and owning everything you ship.
 
-### 2. The 4D Framework
-
-- **The 4D Framework for AI Fluency** — (7 minutes) This video introduces the 4D Framework — Delegation, Description, Discernment, and Diligence — and explains how each competency applies to your daily work.
-- **Key takeaways** — The inner loop (Description and Discernment) guides daily AI interactions. The outer loop (Delegation and Diligence) guides bigger decisions about when and how to use AI.
-- **Map your builder brief to the 4Ds** — Pull out the builder brief you created in the previous lesson. This exercise uses it to show you which competencies you’ll need most — and gets you into a real interaction before the next lesson.
-- **Part I: Tag your document** — Read through your builder brief and mark each goal, concern, or task with the competency it most relates to:
-- **Discernment: concerns about evaluating or trusting what AI produces** — Diligence: questions about responsibility, testing, and accountability for what you ship Which competency shows up most? That’s where your attention is already focused — and usually where you’ll see the fastest gains.
-
-### 3. AI capabilities & limitations
-
-- **What is generative AI** — (12 minutes) This video covers how large language models like Claude are built and trained, and what that means for what they can — and can’t — reliably do when you put them to work in your business.
-- **Key takeaways** — Generative AI creates new content rather than analyzing existing data. Three developments made modern LLMs possible: the transformer architecture, vast training data, and massive compute.
-- **Testing the edges** — This exercise gives you firsthand evidence of what generative AI does well and where it falls short, using a coding problem you already know cold — so you have a concrete gut check, built from your own observations, when deciding what to trust AI with.
-- **Part I: Self-Reflection (on your own)** — Pick a coding domain you know well, where you’d immediately spot an error. Jot down: The topic (e.
-- **One common misconception or tricky implementation detail** — One thing that’s changed recently — a library update, a deprecation, a new best practice
-
-### 4. Delegation & the builder's toolkit
-
-- **Delegation & the builder's toolkit** — (5 minutes) Before you write a single line of code, you make a dozen decisions that shape whether what you build will matter. This lesson reframes delegation: it’s not “should I use AI here?
-- **The Builder’s Toolkit** — Click any capability to see where AI fits in your build process.
-- **AI WEAK** — Understanding who you’re building for. AI can surface data and personas — it can’t feel the gap.
-- **Key takeaways** — Delegation means decomposing the problem first, then deciding what AI handles at each step. Write acceptance tests before code.
-- **The Clinic Wait Time Project, Part 1** — This project threads through the entire course. You’ll return to it in every lesson, and by the end you’ll have built something real.
-
-### 5. Description & building great things
-
-- **Translate a user need to precise AI instruction using the Description Chain** — Spot when a description failure cascades and trace it back to the link that broke
-- **Describing what users need** — (5 minutes) Most AI training teaches you to write better prompts. That’s necessary but not sufficient for building great products.
-- **Key takeaways** — The Description Chain connects user voice to requirement to technical spec to AI instruction. Prompt engineering is only one link.
-- **The Clinic Wait Time Project, Part 2** — You’re picking up exactly where the last lesson left off. Pull out your problem brief, your delegation plan, and your acceptance tests.
-- **Step 1: Write the product requirement** — One paragraph. Take the user need from your problem brief and scope it into something measurable.
-
-### 6. Discernment for code
-
-- By the end of this lesson you'll be able to: Evaluate AI-generated work across five lenses: correctness, quality, fit, experience, and responsibility Raise your quality bar beyond "it works" by learning failure modes specific to AI-built products
-- **Discernment for code** — (5 minutes) When AI can spin up a working product in minutes, “working” stops being the bar. You’ll learn where AI-built products typically fail, the technical blind spots that surface in production but not in development, and how to build the taste that AI doesn’t have.
-- **The Five Lenses of Discernment** — Lens 1 is easy to test — run it and see. By Lens 5, you’re making judgment calls AI can’t make for you.
-- **Key takeaways** — Code that runs can still fail. The default AI output is technically complete but often misses the point.
-- **User testing the Clinic project** — Put your build in front of a partner playing a patient or clinic admin — don’t explain, don’t help. Watch where they get confused, what they ignore, and what they wanted that you never built.
-
-### 7. Discernment for user experience
-
-- By the end of this lesson you'll be able to: Apply hierarchy, user flows, accessibility, and feedback patterns when specifying what AI should build
-- **Discernment for user experience** — (2 minutes) As AI speeds up implementation, design becomes the differentiator. This lesson covers the UX principles that matter most when working with AI, why “make it look good” produces nothing useful, and how to close the gap between a critique you’d give a colleague and a description AI can execute.
-- **UX Lab: Apply the four principles** — Each tab shows a food delivery screen with common UX problems AI generates by default. Hover over any element to discover what’s wrong — then click Show Fix to see how it should be built.
-- **Clarity** — Every element should instantly communicate its purpose. Users shouldn’t have to guess what a button does or what a field means.
-- **Key takeaways** — When implementation is fast, experience is the differentiator. Design literacy is a core builder skill.
-
-### 8. Stand behind what you build
-
-- **Articulate what you own when you ship something AI helped build** — Identify the technical realities that surface at ship time and build feedback loops that catch them
-- **Diligence & sharing your work** — (3 minutes) Diligence in the builder model is full ownership: you’re responsible for the product from whether it should exist to whether it’s serving users after launch. This lesson covers what it means to ship, the technical realities AI won’t warn you about, why tests become your safety net the moment something is live, and the underrated skill of deprecating your own work.
-- **Key takeaways** — You own the outcome, not the output. “AI wrote it” explains nothing and excuses nothing. Shipping has its own technical vocabulary (migrations, versioning, rate limits, feature flags) that AI will not surface unless you ask.
-- **Ship the Clinic app** — Shipping is where diligence becomes real — before you deploy, answer each of these honestly. Once you’ve worked through these, deploy your app or host it as a prototype, share it with three real users, and make one iteration based on what you learn, with tests that verify the change.
-- **Lesson reflection** — How has your thinking about AI integration changed from the beginning of this course? What’s one thing you’ll do differently in your work with AI based on what you’ve learned?
-
-### 9. Closure & looking forward
-
-- **Looking forward** — (4 minutes) This closing video brings together everything you've learned across the course and challenges you to put it into practice immediately with real work that's already waiting for you.
-- **Key takeaways** — AI is strongest in the middle of the toolkit. Delegate implementation freely.
-- **Your next build** — Before completing this course, choose one real task from your current work to tackle with AI support this week. Pick something concrete and already waiting — not a hypothetical.
-- **A part of your codebase with no tests that makes you nervous to touch** — Work through it using all four competencies: Delegation — Which stages are safe to delegate? Which require your judgment?
-- **Lesson reflection** — What task are you committing to this week — and which part of the 4D Framework will matter most? What did you believe about working with AI at the start of this course that you now see differently?
+💡 Start by writing a **builder brief**: what are you currently building? What's your stack? What's your biggest concern about AI in your workflow? This document becomes your anchor for the exercises throughout the course.
 
 ---
 
-## 💡 Universal Tips for Working with AI
+### 2. The 4D Framework
 
-- **Start with the goal, not the prompt** — be clear about what outcome you want
-- **Iterate** — first outputs are drafts, not final answers
-- **Verify facts independently** — AI is confident but not always correct
-- **Stay in the loop** — always review AI output before acting on it
-- **Be transparent** — disclose AI use to collaborators and stakeholders
-- **Match AI use to value** — delegate tasks where AI genuinely helps, not for its own sake
+Two loops, one system:
+
+- **Inner loop (Description ↔ Discernment):** daily AI interactions — describe, evaluate, refine.
+- **Outer loop (Delegation ↔ Diligence):** strategic decisions about when and how much to trust AI.
+
+For builders, the 4Ds map directly to the build process:
+- **Delegation** — what stages of the build can AI handle? (Design research? Boilerplate? API integration? User interviews? Never.)
+- **Description** — translating a user need into a precise AI instruction is the core builder skill.
+- **Discernment** — evaluating output across five lenses: correctness, quality, fit, experience, responsibility.
+- **Diligence** — you own the outcome, not the output.
+
+💡 Tag your builder brief by competency. Whichever shows up most is where you'll see the fastest gains — and where this course is most valuable to you.
+
+---
+
+### 3. AI Capabilities & Limitations
+
+Generative AI creates new content via two training stages: pretraining (pattern learning from billions of examples) and fine-tuning (instruction following). Current strengths: versatility, conversational fluency, tool use, code generation. Current limits: knowledge cutoffs, hallucinations, unreliable complex reasoning, and no sense of your users.
+
+💡 **Test the edges on your own domain** — pick a coding area you know cold and probe AI on: a tricky implementation detail, a common misconception, a recent change (library update, deprecation, new best practice). This builds a calibrated gut check you can actually use.
+
+💡 The best builder applications pair AI's speed and scale with your judgment, creativity, and user empathy — the parts AI cannot replicate.
+
+---
+
+### 4. Delegation & the Builder's Toolkit
+
+Delegation for builders means **decomposing the problem first**, then deciding what AI handles at each step — before you write a line of code.
+
+**The Builder's Toolkit — where AI fits:**
+- ✅ **AI strong:** implementation, boilerplate, tests, docs, API integration
+- ⚠️ **AI weak:** understanding who you're building for, architectural trade-offs that require business context, judgment calls about what *should* be built
+
+💡 **Write acceptance tests before you write code.** Tests give you and AI a shared, precise definition of done. Without them, AI produces code that *runs* but may not do what you meant.
+
+💡 As AI accelerates implementation, your comparative value shifts to **framing problems** and **raising the quality bar** — the work before the first line of code.
+
+---
+
+### 5. Description & Building Great Things
+
+The **Description Chain** connects user voice → requirement → technical spec → AI instruction. Prompt engineering is only one link. Every link requires judgment the previous phase didn't make for you.
+
+- **User voice** — what did the user actually say? What did they mean that they didn't say?
+- **Requirement** — one measurable paragraph. Every adjective is a decision: "fast" → how fast? "simple" → simple for whom?
+- **Technical spec** — implementation details, constraints, edge cases.
+- **AI instruction** — precise enough that a capable model can act without guessing your intent.
+- **Tests** — the most precise form of description. A passing test with an unhappy user means you described the wrong intent.
+
+💡 AI cannot hear what the user did not say. Code that works but the product doesn't is a description failure — trace it back to which link broke.
+
+💡 "Make it user-friendly" is not a spec. "A patient in a parking lot using their phone with one hand should be able to check the wait time in under 10 seconds" is.
+
+---
+
+### 6. Discernment for Code
+
+When AI can ship a working product in minutes, "working" stops being the bar. Evaluate AI-generated code through five lenses:
+
+| Lens | Question |
+|---|---|
+| **1. Correctness** | Does it do what it's supposed to do? (run it and see) |
+| **2. Quality** | Is it maintainable, readable, idiomatic for the stack? |
+| **3. Fit** | Does it match the actual requirement — not just a reasonable interpretation? |
+| **4. Experience** | Does it produce an output users will actually want to use? |
+| **5. Responsibility** | Could it be misread, misused, or harm someone? |
+
+💡 AI has predictable blind spots in **concurrency, security, and anything that only breaks at scale.** Lint 1 is easy to test. By Lens 5, you're making judgment calls AI cannot make for you.
+
+💡 **Taste is a builder skill.** AI delivers functional. Making it worth using is on you. Don't accept "it works" as the end of discernment.
+
+---
+
+### 7. Discernment for User Experience
+
+As AI speeds up implementation, **design becomes the differentiator.** "Make it look good" is a wish, not a spec. Four UX principles to apply when evaluating AI-generated interfaces:
+
+1. **Clarity** — every element instantly communicates its purpose. Users shouldn't guess what a button does.
+2. **Hierarchy** — visual weight guides the eye to what matters first.
+3. **Accessibility** — AI does not get accessibility right by default. Specify it explicitly and audit what you get back.
+4. **Feedback patterns** — does the interface communicate state changes, loading, errors, and success in ways users recognize?
+
+💡 A good critique ("this is confusing") and an actionable AI description ("replace this gray placeholder text with a visible label above the field, in 14px medium weight") are different artifacts. Learn to translate between them.
+
+💡 **User testing without explaining or helping** is the most reliable discernment tool for UX. Watch where they get confused, what they ignore, what they wanted that you never built.
+
+---
+
+### 8. Stand Behind What You Build
+
+Diligence for builders is **full ownership** — you're responsible for the product from "should this exist?" to "is it serving users after launch?" "AI wrote it" explains nothing and excuses nothing.
+
+**Before shipping, answer honestly:**
+- Can you explain what your code does, not just what it should do?
+- Do your acceptance tests still pass? Have you tested edge cases?
+- Who does your build not serve well? (access is a design decision)
+- Could this output be misread or misused?
+- Have you been transparent about AI's role?
+
+💡 **Tests make post-launch iteration safe.** The test-first habit is what lets you keep changing things confidently after something is live. Without tests, every change is a risk.
+
+💡 **Shipping has its own technical vocabulary** (migrations, versioning, rate limits, feature flags) that AI won't surface unless you explicitly ask. Add these as prompts before you deploy.
+
+💡 **Prototype freely, ship selectively.** Cheap code creates value only when paired with honest evaluation. Be willing to veto something you built when the evidence says it isn't working.
+
+---
+
+### 9. Closure & Looking Forward
+
+The 4Ds are dynamic, not a sequence. Moving fluidly between them as you build is what fluency looks like in practice. For your next build, apply all four competencies:
+
+- **Delegation** — which stages are safe to delegate? Which require your judgment?
+- **Description** — write the full chain: user need → requirement → spec → AI instruction → tests.
+- **Discernment** — evaluate output through all five lenses.
+- **Diligence** — before shipping: do I understand this? Is there a feedback loop? Would I stand behind it?
+
+💡 Pick a part of your codebase with no tests that makes you nervous to touch. That's your practice task — it has real stakes and real constraints, which is where the 4D workflow earns its value.
+
+---
+
+## 💡 Key Principles Across the Course
+
+- **Decompose before you build** — the most important work happens before AI writes a line of code. Problem framing and acceptance tests are builder skills, not AI skills.
+- **The Description Chain beats the magic prompt** — prompt engineering is one link in a longer chain. Trace failures upstream to where the chain broke.
+- **"It works" is not the bar** — evaluate through all five lenses. Correctness is lens 1 of 5.
+- **Design is the differentiator when implementation is fast** — as AI commoditizes code generation, taste and UX judgment become more valuable, not less.
+- **You own the outcome, not the output** — diligence is full ownership from conception to user impact. AI is the accelerant; you're the engineer.
 
 ---
 
